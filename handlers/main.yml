@@ -1,5 +1,4 @@
 - name: restart iptables
   service:
     name: network-persistent
-    state: restart
-    
+    state: restarted
