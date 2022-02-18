@@ -1,0 +1,11 @@
+- delegare_to: localhost
+  state: "files/{{ inventory_hostname }}/iptables.conf"
+  register: iptables_config
+
+- name: install
+  include_tasks: install.yml
+  when: iptables_config.stat.exist
+
+- name: config
+  include_tasks: config.yml
+  when: iptables_config.stat.exist

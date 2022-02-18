@@ -1,0 +1,26 @@
+- name: delete configs (old revisions)
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/init.d/iptables
+    - /etc/iptables.conf
+    - /etc/iptables.save
+    - /etc/iptables/rules.save
+    - /etc/rules.v4
+
+- name: mkdir -p /etc/iptables
+  file:
+    path: /etc/iptables
+    state: directory
+    owner: root
+    group: sudo
+    mode: 0750
+
+- copy:
+    src: files/{{ inventory_hostname }}/iptables.conf
+    dest: /etc/
+    owner: root
+    group: sudo
+    mode: 0640
+  notify: restart iptables
