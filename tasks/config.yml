@@ -9,7 +9,7 @@
     - /etc/iptables/rules.save
     - /etc/rules.v4
 
-- name: mkdir -p /etc/iptables
+- name: create /etc/iptables
   file:
     path: /etc/iptables
     state: directory
@@ -17,7 +17,8 @@
     group: sudo
     mode: 0750
 
-- copy:
+- name: copy configs
+  copy:
     src: files/{{ inventory_hostname }}/iptables.conf
     dest: /etc/
     owner: root

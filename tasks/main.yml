@@ -1,5 +1,7 @@
-- delegare_to: localhost
-  state: "files/{{ inventory_hostname }}/iptables.conf"
+- name: check local config
+  delegate_to: localhost
+  stat:
+    path: files/{{ inventory_hostname }}/iptables.conf
   register: iptables_config
 
 - name: install
