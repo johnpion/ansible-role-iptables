@@ -6,8 +6,8 @@
 
 - name: install
   include_tasks: install.yml
-  when: iptables_config.stat.exist
+  when: iptables_config.stat.exists
 
 - name: config
   include_tasks: config.yml
-  when: iptables_config.stat.exist
+  when: iptables_config.stat.exists
