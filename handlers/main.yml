@@ -1,4 +1,4 @@
-- name: restart iptables
-  service:
+- name: Restart iptables
+  ansible.builtin.service:
     name: netfilter-persistent
     state: restarted

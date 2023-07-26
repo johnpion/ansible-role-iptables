@@ -1,14 +1,15 @@
 galaxy_info:
-  role_name:           iptables
-  namespace:           johnpion
-  author:              John Seregin seregin.john@gmail.com
-  license:             license Apache-2.0
-  min_ansible_version: 2.9
-  description:         install and config iptables under Debian 7-10
+  role_name: iptables
+  namespace: johnpion
+  author: Ivan Serohin
+  license: license Apache-2.0
+  min_ansible_version: "2.9"
+  description: install and config iptables under Debian 7+
 
   platforms:
-  - name:              Debian
-    versions:
-    - wheezy
-    - stretch
-    - buster
+    - name: Debian
+      versions:
+        - wheezy
+        - stretch
+        - buster
+        - bullseye
