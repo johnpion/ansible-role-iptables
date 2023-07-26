@@ -1,0 +1,13 @@
+- name: Check local config
+  delegate_to: localhost
+  ansible.builtin.stat:
+    path: files/{{ inventory_hostname }}/iptables.conf
+  register: iptables_config
+
+- name: Install
+  ansible.builtin.include_tasks: install.yml
+  when: iptables_config.stat.exists
+
+- name: Config
+  ansible.builtin.include_tasks: config.yml
+  when: iptables_config.stat.exists

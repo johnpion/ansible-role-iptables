@@ -1,0 +1,27 @@
+- name: Delete configs (old revisions)
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/init.d/iptables
+    - /etc/iptables.conf
+    - /etc/iptables.save
+    - /etc/iptables/rules.save
+    - /etc/rules.v4
+
+- name: Create /etc/iptables
+  ansible.builtin.file:
+    path: /etc/iptables
+    state: directory
+    owner: root
+    group: sudo
+    mode: "0750"
+
+- name: Copy configs
+  ansible.builtin.copy:
+    src: files/{{ inventory_hostname }}/iptables.conf
+    dest: /etc/iptables/rules.v4
+    owner: root
+    group: sudo
+    mode: "0640"
+  notify: Restart iptables
